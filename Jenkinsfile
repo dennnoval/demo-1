@@ -1,15 +1,8 @@
-pipeline {
-	agent {
-	  docker {
-	    image 'maven:3.8.6-openjdk-8-slim'
-			reuseNode true
-	  }
-	}
-	stages {
+node {
+	/* Requires the Docker Pipeline plugin to be installed */
+	docker.image('maven:3.8.6-openjdk-8-slim').inside {
 		stage('Build') {
-	    steps {
-	      sh 'mvn clean compile'
-	    }
+			sh 'mvn clean compile package'
 		}
 	}
 }
