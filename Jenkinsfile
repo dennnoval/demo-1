@@ -1,8 +1,8 @@
 node {
 	/* Requires the Docker Pipeline plugin to be installed */
-	docker.image('maven:3.8.6-openjdk-8-slim').inside {
+	docker.image('maven:3.8.6-openjdk-8-slim').inside('-v /root/.m2:/root/.m2') {
 		stage('Build') {
-			sh 'mvn clean compile package'
+			sh 'mvn -B -DskipTests clean package'
 		}
 	}
 }
