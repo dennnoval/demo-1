@@ -1,10 +1,10 @@
-pipeline {
-	agent any
-	stages {
-		stage('Build') {
-	    steps {
-	      sh './mvnw clean compile'
-	    }
-		}
-	}
-}
+pipeline {  
+    agent any  
+    stages {  
+            stage ('Build') {  
+                steps {  
+                        echo 'Running build phase...'  
+                }  
+            }  
+    }  
+}  
