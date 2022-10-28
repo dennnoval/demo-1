@@ -1,31 +1,13 @@
-pipeline {
-    agent any
-    stages {
-        stage('Build') { 
-            steps {
-                sh 'chmod 777 ./mvnw'
-                sh './mvnw -B -DskipTests clean package' 
-            }
-        }
-        stage('Test') { 
-            steps {
-                sh './mvnw test' 
-            }
-            post {
-                always {
-                    junit './target/surefire-reports/*.xml' 
-                }
-            }
-        }
-//         stage('Deliver') { 
-//             steps {
-//                 sh './jenkins/scripts/deliver.sh' 
-//             }
-//         }
-        stage('Run') { 
-            steps {
-                sh './mvnw spring-boot:run' 
-            }
-        }
+node {
+  docker.image('maven:3.8.6-openjdk-8-slim').inside('-v $HOME/.m2:/root/.m2') {
+    stage('Build') {
+      sh 'mvn -B -DskipTests clean package'  
     }
+    stage('Test') {
+      sh 'mvn test' 
+    }
+    stage('Deliver') {
+      sh './jenkins/deliver.sh'
+    }
+  }
 }
