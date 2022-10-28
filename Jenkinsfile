@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'sudo ./mvnw -B -DskipTests clean package' 
+                sudo sh './mvnw -B -DskipTests clean package' 
             }
         }
     }
