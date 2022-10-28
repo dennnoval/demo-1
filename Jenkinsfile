@@ -3,8 +3,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'chmod 777 ../'
-                sh './mvnw -B -DskipTests clean package' 
+                sh 'sudo ./mvnw -B -DskipTests clean package' 
             }
         }
     }
