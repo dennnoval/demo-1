@@ -1,10 +1,15 @@
-pipeline {  
-    agent any 
-    stages {  
-            stage ('Build') {  
-                steps {  
-                        sh 'mvnw clean compile'
-                }  
-            }  
-    }  
-}  
+pipeline {
+    agent {
+        docker {
+            image 'maven:3.8.6-openjdk-18-slim' 
+            args '-v /root/.m2:/root/.m2' 
+        }
+    }
+    stages {
+        stage('Build') { 
+            steps {
+                sh 'mvn -B -DskipTests clean package' 
+            }
+        }
+    }
+}
