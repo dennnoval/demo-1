@@ -1,7 +1,6 @@
 node {
   stage('Initialization') {
-    sh 'echo $WORKSPACE/$JOB_NAME'
-    sh 'cd $WORKSPACE/$JOB_NAME'
+    sh 'cd $WORKSPACE'
   }
   stage('Build') {
     sh 'mvnw -B -DskipTests clean package'  
