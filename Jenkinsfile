@@ -1,5 +1,6 @@
 node {
   stage('Initialization') {
+    sh 'echo $WORKSPACE/$JOB_NAME'
     sh 'cd $WORKSPACE/$JOB_NAME'
   }
   stage('Build') {
