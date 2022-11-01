@@ -1,5 +1,6 @@
 node {
   stage('Initialization') {
+    cleanWs()
     sh 'git clone https://github.com/dennnoval/demo-1.git .'
   }
   stage('Build') {
