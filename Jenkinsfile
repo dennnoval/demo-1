@@ -1,6 +1,6 @@
 node {
   stage('Initialization') {
-    step([$class: 'WsCleanup'])
+    cleanWs()
     sh 'git clone https://github.com/dennnoval/demo-1.git .'
   }
   stage('Build') {
