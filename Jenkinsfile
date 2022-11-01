@@ -1,4 +1,7 @@
 node {
+  tools {
+    maven '3.8.6'
+  }
   stage('Initialization') {
     deleteDir()
     sh 'git clone https://github.com/dennnoval/demo-1.git .'
