@@ -1,20 +1,13 @@
-pipeline {
-  agent any
-  stages {
+node {
+  docker.image('maven:3.8.6-openjdk-8-slim').inside('-v $HOME/.m2:/root/.m2') {
+    stage('Initialization') {
+      sh 'git https://github.com/dennnoval/demo-1.git'
+    }
     stage('Build') {
-      steps {
-        sh 'mvnw -B -DskipTests clean package'
-      }
+      sh 'mvn -B -DskipTests clean package'  
     }
     stage('Test') {
-      steps {
-        sh 'mvnw test'
-      }
-    }
-    stage('Deliver') {
-      steps {
-        sh 'echo "delivered to cloud"'
-      }
+      sh 'mvn test' 
     }
   }
 }
