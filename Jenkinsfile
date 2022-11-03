@@ -5,9 +5,9 @@ node {
     sh "chmod +x -R ${env.WORKSPACE}"
   }
   stage('Build') {
-    sh './mvnw -B -DskipTests clean package'  
+    sh 'mvn -B -DskipTests clean package'  
   }
   stage('Test') {
-    sh './mvnw test'
+    sh 'mvnw test'
   }
 }
